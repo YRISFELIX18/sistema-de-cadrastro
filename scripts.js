@@ -1,7 +1,7 @@
 import { Cliente } from './classes.js';
 import { validarEntrada, validarEmail } from './utils.js';
 
-const API_BASE = 'https://crudcrud.com/api/d39f47fd489143fb86df95a7cd181ba1';
+const API_BASE = 'https://crudcrud.com/api/d39f47fd489143fb86df95a7cd181ba1/clientes';
 const form = document.getElementById('cliente-form');
 const listaClientes = document.getElementById('lista-clientes');
 
