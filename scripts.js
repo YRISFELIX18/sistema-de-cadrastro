@@ -1,4 +1,7 @@
-const API_BASE = 'https://crudcrud.com/api/092f40c492294487b10c5e7a725feb03';
+import { Cliente } from './classes.js';
+import { validarEntrada, validarEmail } from './utils.js';
+
+const API_BASE = 'https://crudcrud.com/api/d39f47fd489143fb86df95a7cd181ba1';
 const form = document.getElementById('cliente-form');
 const listaClientes = document.getElementById('lista-clientes');
 
@@ -7,13 +10,18 @@ form.addEventListener('submit', async (e) => {
   const nome = document.getElementById('nome').value.trim();
   const email = document.getElementById('email').value.trim();
 
-  if (!nome || !email) return;
+  if (!validarEntrada(nome) || !validarEmail(email)) {
+    alert('Por favor, preencha todos os campos corretamente.');
+    return;
+  }
+
+  const cliente = new Cliente(nome, email);
 
   try {
     await fetch(API_BASE, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nome, email })
+      body: JSON.stringify(cliente)
     });
     form.reset();
     carregarClientes();
